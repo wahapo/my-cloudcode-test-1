@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>タイピングアドベンチャー — テスト</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.21.0.css">
+  <style>
+    body { font-family: 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; }
+    #qunit-header { background: #1a1a2e; }
+  </style>
+</head>
+<body>
+
+<!--
+  QUnit テストランナー
+  ブラウザで tests/index.html を開くとテストが実行されます。
+  GitHub Pages では https://<user>.github.io/<repo>/tests/ でアクセス可能。
+-->
+
+<!-- QUnit の表示領域 -->
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<!--
+  game.js が依存する DOM 要素をダミーで用意する。
+  game.js はロード時に addEventListener を呼ぶため、
+  実在する要素が必要。
+-->
+<div id="screen-title"  class="screen active"></div>
+<div id="screen-howto"  class="screen"></div>
+<div id="screen-game"   class="screen">
+  <div class="game-header">
+    <div class="header-score"><span id="score-display">0</span></div>
+    <div class="header-combo"><span id="combo-display">0</span></div>
+    <div class="header-timer"><span id="timer-display">60</span></div>
+  </div>
+  <div class="game-body">
+    <div id="word-card">
+      <div id="word-emoji"></div>
+      <div id="word-kana"></div>
+      <div id="word-remaining"></div>
+      <div id="word-typed"></div>
+    </div>
+    <div class="input-area">
+      <input type="text" id="typing-input">
+    </div>
+    <div id="feedback-area"></div>
+  </div>
+  <div class="timer-bar-container">
+    <div id="timer-bar"></div>
+  </div>
+</div>
+<div id="screen-result" class="screen">
+  <div id="result-mascot"></div>
+  <div id="result-title"></div>
+  <div id="result-score"></div>
+  <div id="result-correct"></div>
+  <div id="result-max-combo"></div>
+  <div id="result-accuracy"></div>
+  <div id="result-grade"></div>
+</div>
+<div id="effect-layer"></div>
+<!-- レベルボタン（game.js が querySelectorAll で取得） -->
+<button class="btn-level" data-level="1"></button>
+<button class="btn-level" data-level="2"></button>
+<button class="btn-level" data-level="3"></button>
+<button id="btn-howto"></button>
+<button id="btn-howto-back"></button>
+<button id="btn-retry"></button>
+<button id="btn-home"></button>
+
+<!-- ライブラリ -->
+<script src="https://code.jquery.com/qunit/qunit-2.21.0.js"></script>
+
+<!-- ゲーム本体（GameLogic を window に公開） -->
+<script src="../js/game.js"></script>
+
+<!-- テストケース -->
+<script src="game.test.js"></script>
+
+</body>
+</html>

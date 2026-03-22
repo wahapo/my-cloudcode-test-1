@@ -545,3 +545,20 @@ document.addEventListener('keydown', e => {
 // 初期表示
 // ===================================================
 showScreen('title');
+
+// ===================================================
+// テスト用エクスポート（テストページからのみ使用）
+// ===================================================
+window.GameLogic = {
+  kanaToRomaji,
+  validateRomajiPrefix,
+  getGrade,
+  calcGainedScore(combo) {
+    const bonus = Math.min(combo, CONFIG.MAX_COMBO_BONUS) * CONFIG.COMBO_BONUS;
+    return CONFIG.BASE_SCORE + bonus;
+  },
+  WORD_DB,
+  CONFIG,
+  ROMAJI_TABLE,
+  ROMAJI_ALT,
+};
