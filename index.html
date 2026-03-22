@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>タイピングアドベンチャー</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== タイトル画面 ===== -->
+<div id="screen-title" class="screen active">
+  <div class="title-container">
+    <div class="title-mascot">🚀</div>
+    <h1 class="title-text">タイピング<br>アドベンチャー</h1>
+    <p class="title-sub">ローマじをうって、もじをおぼえよう！</p>
+
+    <div class="level-select">
+      <p class="level-label">レベルをえらんでね</p>
+      <div class="level-buttons">
+        <button class="btn-level" data-level="1">
+          <span class="level-icon">⭐</span>
+          <span class="level-name">かんたん</span>
+          <span class="level-desc">1もじのことば</span>
+        </button>
+        <button class="btn-level" data-level="2">
+          <span class="level-icon">⭐⭐</span>
+          <span class="level-name">ふつう</span>
+          <span class="level-desc">どうぶつのなまえ</span>
+        </button>
+        <button class="btn-level" data-level="3">
+          <span class="level-icon">⭐⭐⭐</span>
+          <span class="level-name">むずかしい</span>
+          <span class="level-desc">いろんなことば</span>
+        </button>
+      </div>
+    </div>
+
+    <button id="btn-howto" class="btn-secondary">あそびかた</button>
+  </div>
+</div>
+
+<!-- ===== あそびかた画面 ===== -->
+<div id="screen-howto" class="screen">
+  <div class="howto-container">
+    <h2>あそびかた</h2>
+    <div class="howto-steps">
+      <div class="howto-step">
+        <div class="step-num">1</div>
+        <div class="step-text">ひらがなのことばが　でてくるよ</div>
+      </div>
+      <div class="howto-step">
+        <div class="step-num">2</div>
+        <div class="step-text">そのことばを　ローマじで　うとう！</div>
+      </div>
+      <div class="howto-step">
+        <div class="step-num">3</div>
+        <div class="step-text">せいかいするとポイントがふえるよ</div>
+      </div>
+      <div class="howto-step">
+        <div class="step-num">4</div>
+        <div class="step-text">れんぞくせいかい（コンボ）で<br>ボーナスポイント！</div>
+      </div>
+    </div>
+
+    <div class="romaji-hint">
+      <h3>ローマじのれい</h3>
+      <div class="hint-grid">
+        <div class="hint-item"><span class="kana">あ</span><span class="roma">a</span></div>
+        <div class="hint-item"><span class="kana">い</span><span class="roma">i</span></div>
+        <div class="hint-item"><span class="kana">う</span><span class="roma">u</span></div>
+        <div class="hint-item"><span class="kana">え</span><span class="roma">e</span></div>
+        <div class="hint-item"><span class="kana">お</span><span class="roma">o</span></div>
+        <div class="hint-item"><span class="kana">か</span><span class="roma">ka</span></div>
+        <div class="hint-item"><span class="kana">き</span><span class="roma">ki</span></div>
+        <div class="hint-item"><span class="kana">く</span><span class="roma">ku</span></div>
+        <div class="hint-item"><span class="kana">ね</span><span class="roma">ne</span></div>
+        <div class="hint-item"><span class="kana">こ</span><span class="roma">ko</span></div>
+        <div class="hint-item"><span class="kana">さ</span><span class="roma">sa</span></div>
+        <div class="hint-item"><span class="kana">な</span><span class="roma">na</span></div>
+        <div class="hint-item"><span class="kana">に</span><span class="roma">ni</span></div>
+        <div class="hint-item"><span class="kana">ぬ</span><span class="roma">nu</span></div>
+        <div class="hint-item"><span class="kana">は</span><span class="roma">ha</span></div>
+        <div class="hint-item"><span class="kana">ひ</span><span class="roma">hi</span></div>
+        <div class="hint-item"><span class="kana">ふ</span><span class="roma">fu</span></div>
+        <div class="hint-item"><span class="kana">ま</span><span class="roma">ma</span></div>
+        <div class="hint-item"><span class="kana">や</span><span class="roma">ya</span></div>
+        <div class="hint-item"><span class="kana">ら</span><span class="roma">ra</span></div>
+      </div>
+    </div>
+
+    <button id="btn-howto-back" class="btn-primary">もどる</button>
+  </div>
+</div>
+
+<!-- ===== ゲーム画面 ===== -->
+<div id="screen-game" class="screen">
+  <div class="game-header">
+    <div class="header-score">
+      <span class="header-label">スコア</span>
+      <span id="score-display">0</span>
+    </div>
+    <div class="header-combo" id="combo-area">
+      <span id="combo-display">0</span>
+      <span class="header-label">コンボ</span>
+    </div>
+    <div class="header-timer">
+      <span id="timer-display">60</span>
+      <span class="header-label">びょう</span>
+    </div>
+  </div>
+
+  <div class="game-body">
+    <div class="word-card" id="word-card">
+      <div class="word-emoji" id="word-emoji">🌟</div>
+      <div class="word-kana" id="word-kana">ことばがでるよ</div>
+      <div class="word-remaining" id="word-remaining"></div>
+      <div class="word-typed" id="word-typed"></div>
+    </div>
+
+    <div class="input-area">
+      <input
+        type="text"
+        id="typing-input"
+        class="typing-input"
+        placeholder="ここにローマじをうとう！"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+      >
+    </div>
+
+    <div class="feedback-area" id="feedback-area"></div>
+  </div>
+
+  <div class="timer-bar-container">
+    <div class="timer-bar" id="timer-bar"></div>
+  </div>
+</div>
+
+<!-- ===== リザルト画面 ===== -->
+<div id="screen-result" class="screen">
+  <div class="result-container">
+    <div class="result-mascot" id="result-mascot">🎉</div>
+    <h2 class="result-title" id="result-title">ゲームおわり！</h2>
+
+    <div class="result-stats">
+      <div class="stat-item">
+        <span class="stat-label">スコア</span>
+        <span class="stat-value" id="result-score">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">せいかいすう</span>
+        <span class="stat-value" id="result-correct">0</span>
+        <span class="stat-unit">もん</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">さいだいコンボ</span>
+        <span class="stat-value" id="result-max-combo">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">せいかいりつ</span>
+        <span class="stat-value" id="result-accuracy">0</span>
+        <span class="stat-unit">%</span>
+      </div>
+    </div>
+
+    <div class="result-grade" id="result-grade"></div>
+
+    <div class="result-buttons">
+      <button id="btn-retry" class="btn-primary">もういちど</button>
+      <button id="btn-home" class="btn-secondary">タイトルへ</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== エフェクト層 ===== -->
+<div id="effect-layer" aria-hidden="true"></div>
+
+<script src="js/game.js"></script>
+</body>
+</html>
